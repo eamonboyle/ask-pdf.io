@@ -10,7 +10,7 @@ AskPDF.io is a web application that allows you to upload PDF documents and ask q
 - **Prisma**: A modern database toolkit for Node.js and TypeScript.
 - **PlanetScale**: A distributed database platform.
 - **TRPC**: A framework for building type-safe APIs.
-- **Kinde Auth**: [Please provide more details about this technology.]
+- **Kinde Auth**: Auth package
 
 ## Getting Started
 
