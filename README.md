@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AskPDF.io
+
+## Description
+
+AskPDF.io is a web application that allows you to upload PDF documents and ask questions about their content using AI-powered algorithms.
+
+## Technologies Used
+
+- **NextJS 13**: A React framework for building server-rendered React applications.
+- **Prisma**: A modern database toolkit for Node.js and TypeScript.
+- **PlanetScale**: A distributed database platform.
+- **TRPC**: A framework for building type-safe APIs.
+- **Kinde Auth**: [Please provide more details about this technology.]
 
 ## Getting Started
 
-First, run the development server:
+To run the application locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Clone the repository:
+
+```
+git clone <repository_url>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Install dependencies using one of the following package managers:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Using NPM:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  ```
+  npm install
+  ```
 
-## Learn More
+- Using Yarn:
 
-To learn more about Next.js, take a look at the following resources:
+  ```
+  yarn install
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Using PNPM:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  ```
+  pnpm install
+  ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Using NPM:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ```
+  npm run dev
+  ```
+
+- Using Yarn:
+
+  ```
+  yarn dev
+  ```
+
+- Using PNPM:
+
+  ```
+  pnpm dev
+  ```
+
+5. Open your web browser and navigate to `http://localhost:3000` to access the application.
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to the project, please follow our [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+If you have any questions or need assistance, feel free to contact us at [your_email@example.com].
