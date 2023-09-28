@@ -74,4 +74,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or need assistance, feel free to contact us at [your_email@example.com].
+If you have any questions or need assistance, feel free to contact us at [blaowskate@hotmail.com].
