@@ -73,7 +73,8 @@ model AskPDF_User {
     id    String @id @unique // matches kinde user id
     email String @unique
 
-    File AskPDF_File[]
+    File    AskPDF_File[]
+    Message AskPDF_Message[]
 
     stripeCustomerId       String?   @unique @map(name: "stripe_customer_id") // stripe customer id
     stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id") // stripe subscription id
@@ -94,8 +95,27 @@ model AskPDF_File {
     uploadStatus  AskPDF_UploadStatus @default(PENDING)
     url           String
     key           String
+    messages      AskPDF_Message[]
     createdAt     DateTime            @default(now())
     updatedAt     DateTime            @updatedAt
     AskPDF_User   AskPDF_User?        @relation(fields: [askPDF_UserId], references: [id])
     askPDF_UserId String?
+
+    @@index([askPDF_UserId])
+}
+
+model AskPDF_Message {
+    id   String @id @default(cuid())
+    text String @db.Text
+
+    isUserMessage Boolean
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @updatedAt
+    AskPDF_User   AskPDF_User? @relation(fields: [askPDF_UserId], references: [id])
+    askPDF_UserId String?
+    AskPDF_File   AskPDF_File? @relation(fields: [askPDF_FileId], references: [id])
+    askPDF_FileId String?
+
+    @@index([askPDF_UserId])
+    @@index([askPDF_FileId])
 }

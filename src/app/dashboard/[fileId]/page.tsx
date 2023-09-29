@@ -1,4 +1,4 @@
-import ChatWrapper from "@/components/ChatWrapper";
+import ChatWrapper from "@/components/chat/ChatWrapper";
 import PdfRenderer from "@/components/PdfRenderer";
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -6,29 +6,28 @@ import { notFound, redirect } from "next/navigation";
 
 type PageProps = {
     params: {
-        fileId: string
-    }
-}
+        fileId: string;
+    };
+};
 
 const Page = async ({ params }: PageProps) => {
-
     const { fileId } = params;
 
     // make DB call to get file data
 
     const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = getUser();
 
-    if (!user || !user.id) {
-        redirect(`/auth-callback/origin=dashboard/${fileId}`)
+    if (!user?.id) {
+        redirect(`/auth-callback/origin=dashboard/${fileId}`);
     }
 
-    // make a database call 
+    // make a database call
     const file = await db.askPDF_File.findFirst({
         where: {
             id: fileId,
-            askPDF_UserId: user.id
-        }
+            askPDF_UserId: user.id,
+        },
     });
 
     if (!file) notFound();
@@ -39,16 +38,16 @@ const Page = async ({ params }: PageProps) => {
                 {/* Left Side */}
                 <div className="flex-1 xl:flex">
                     <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
-                        <PdfRenderer />
+                        <PdfRenderer url={file.url} />
                     </div>
                 </div>
                 {/* Right Side */}
                 <div className="shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
-                    <ChatWrapper />
+                    <ChatWrapper fileId={file.id} />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;
