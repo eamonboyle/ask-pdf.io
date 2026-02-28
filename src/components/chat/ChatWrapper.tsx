@@ -17,10 +17,12 @@ const ChatWrapper = ({ fileId }: ChatWrapperProps) => {
             fileId,
         },
         {
-            refetchInterval: (data) =>
-                data?.status === "SUCCESS" || data?.status === "FAIL"
+            refetchInterval: (query) => {
+                const data = query.state?.data;
+                return data?.status === "SUCCESS" || data?.status === "FAIL"
                     ? false
-                    : 500,
+                    : 500;
+            },
         }
     );
 

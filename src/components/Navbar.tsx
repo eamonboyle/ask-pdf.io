@@ -9,9 +9,9 @@ import {
     getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 
-const Navbar = () => {
+const Navbar = async () => {
     const { getUser } = getKindeServerSession();
-    const user = getUser();
+    const user = await getUser();
 
     return (
         <>

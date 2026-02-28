@@ -1,9 +1,9 @@
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PineconeStore } from "@langchain/pinecone";
 import { getPineconeClient } from "@/lib/pinecone";
 
 const f = createUploadthing();
@@ -12,7 +12,7 @@ export const ourFileRouter = {
     pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
         .middleware(async ({ req }) => {
             const { getUser } = getKindeServerSession();
-            const user = getUser?.();
+            const user = await getUser();
 
             if (!user?.id) throw new Error("Unauthorized");
 
@@ -41,8 +41,8 @@ export const ourFileRouter = {
                 const pagesAmt = pageLevelDocs.length; // use this to check free
 
                 // vectorize and index entire document
-                const pinecone = await getPineconeClient();
-                const pineconeIndex = pinecone.Index("askpdf");
+                const pinecone = getPineconeClient();
+                const pineconeIndex = pinecone.index("askpdf");
 
                 const embeddings = new OpenAIEmbeddings({
                     openAIApiKey: process.env.OPENAI_API_KEY,

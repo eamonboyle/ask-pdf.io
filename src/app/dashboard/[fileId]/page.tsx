@@ -5,18 +5,16 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
 
 type PageProps = {
-    params: {
-        fileId: string;
-    };
+    params: Promise<{ fileId: string }>;
 };
 
 const Page = async ({ params }: PageProps) => {
-    const { fileId } = params;
+    const { fileId } = await params;
 
     // make DB call to get file data
 
     const { getUser } = getKindeServerSession();
-    const user = getUser();
+    const user = await getUser();
 
     if (!user?.id) {
         redirect(`/auth-callback/origin=dashboard/${fileId}`);
