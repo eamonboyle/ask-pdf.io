@@ -95,7 +95,7 @@ const ChatWrapper = ({ fileId }: ChatWrapperProps) => {
                 <Messages />
             </div>
 
-            <ChatInput isDisabled />
+            <ChatInput />
         </div>
     );
 };
